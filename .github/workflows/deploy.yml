@@ -1,4 +1,4 @@
-name: Deploy JobSnipr to Azure Container Apps
+name: Deploy JobSnipr to Azure
 
 on:
   push:
@@ -43,10 +43,3 @@ jobs:
 
           docker push \
             $REGISTRY_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG
-
-      - name: Deploy to Azure Container Apps
-        run: |
-          az containerapp update \
-            --name $CONTAINER_APP_NAME \
-            --resource-group $RESOURCE_GROUP \
-            --image $REGISTRY_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }}
